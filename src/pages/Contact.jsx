@@ -177,28 +177,28 @@ export default function ContactUs() {
   return (
     <HelmetProvider>
       <Helmet>
-        <title>Contact AusPac - Trusted Marine Services</title>
+        <title>Contact AusPac – Trusted Marine Consulting</title>
         <meta
           name="description"
-          content="Contact AusPac for trusted marine service solutions. Reach out via phone, email, or visit us at our Cannon Hill office."
+          content="Contact AusPac for trusted marine surveying and consultancy services. Reach out via email, phone, WhatsApp, WeChat, or mail."
         />
-        <meta property="og:title" content="Contact AusPac - Trusted Marine Services" />
+        <meta property="og:title" content="Contact AusPac – Trusted Marine Consulting" />
         <meta
           property="og:description"
-          content="Contact AusPac for trusted marine service solutions. Reach out via phone, email, or visit us at our Cannon Hill office."
+          content="Contact AusPac for trusted marine surveying and consultancy services. Reach out via email, phone, WhatsApp, WeChat, or mail."
         />
         <script type="application/ld+json">
           {`
             {
               "@context": "https://schema.org",
               "@type": "Organization",
-              "name": "AusPac",
+              "name": "AusPac Marine Consulting",
               "url": "https://yourwebsite.com",
               "logo": "https://yourwebsite.com/logo.png",
               "contactPoint": [
                 {
                   "@type": "ContactPoint",
-                  "telephone": "+61-7-3348-6334",
+                  "telephone": "+61-480-556-364",
                   "contactType": "customer service",
                   "areaServed": "AU",
                   "availableLanguage": ["English"]
@@ -206,10 +206,8 @@ export default function ContactUs() {
               ],
               "address": {
                 "@type": "PostalAddress",
-                "streetAddress": "PO Box 317",
-                "addressLocality": "Cannon Hill",
-                "addressRegion": "QLD",
-                "postalCode": "4170",
+                "postOfficeBoxNumber": "3058",
+                "addressLocality": "Melbourne",
                 "addressCountry": "Australia"
               }
             }
@@ -226,42 +224,48 @@ export default function ContactUs() {
             </h1>
 
             <p className="text-lg text-gray-600 italic max-w-md">
-              “At AusPac, we’re here for you — delivering trusted marine service solutions with care and precision.”
+              “At AusPac, we provide trusted marine surveying and consultancy services with discretion and responsiveness.”
             </p>
 
             <div className="space-y-6 text-gray-700 max-w-md">
-              <ContactItem label="Office Address">
-                PO Box 317
-                <br />
-                Cannon Hill, QLD 4170
-              </ContactItem>
-              <ContactItem label="Phone">
-                <a
-                  href="tel:+61733486334"
-                  className="text-indigo-600 hover:underline"
-                  aria-label="Call AusPac Office Phone"
-                >
-                  (+617) 3348 6334
-                </a>
-              </ContactItem>
-              <ContactItem label="Fax">( +617 ) 3396 8709</ContactItem>
-              <ContactItem label="Mobile">
-                <a
-                  href="tel:+61418176815"
-                  className="text-indigo-600 hover:underline"
-                  aria-label="Call AusPac Mobile Phone"
-                >
-                  (+61) 418 176 815
-                </a>
-              </ContactItem>
               <ContactItem label="Email">
                 <a
-                  href="mailto:surveys@cargocare.com.au"
+                  href="mailto:survey@auspac.au"
                   className="text-indigo-600 hover:underline"
-                  aria-label="Email AusPac Surveys"
+                  aria-label="Email AusPac"
                 >
-                  surveys@cargocare.com.au
+                  survey@auspac.au
                 </a>
+              </ContactItem>
+
+              <ContactItem label="Mobile / WhatsApp (International)">
+                <a
+                  href="tel:+61480556364"
+                  className="text-indigo-600 hover:underline"
+                  aria-label="Call AusPac Mobile"
+                >
+                  +61 480 556 364
+                </a>
+              </ContactItem>
+
+              <ContactItem label="Within Australia">
+                <a
+                  href="tel:0480556364"
+                  className="text-indigo-600 hover:underline"
+                  aria-label="Call AusPac Australia"
+                >
+                  0480 556 364
+                </a>
+              </ContactItem>
+
+              <ContactItem label="WeChat">
+                CaptHasan1977
+              </ContactItem>
+
+              <ContactItem label="Postal Address">
+                PO Box 3058
+                <br />
+                Melbourne, Australia
               </ContactItem>
             </div>
           </div>
@@ -270,7 +274,7 @@ export default function ContactUs() {
           <div className="relative">
             <iframe
               title="AusPac Location"
-              src="https://www.google.com/maps?q=PO+Box+317,+Cannon+Hill,+QLD+4170,+Australia&output=embed"
+              src="https://www.google.com/maps?q=PO+Box+3058,+Melbourne,+Australia&output=embed"
               className="w-full h-full min-h-[400px] md:min-h-full rounded-r-3xl border-l border-indigo-200"
               style={{ border: 0 }}
               loading="lazy"

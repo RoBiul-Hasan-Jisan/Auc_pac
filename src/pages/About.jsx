@@ -1,102 +1,42 @@
-import React, { useState, useEffect } from 'react';
-import { Helmet, HelmetProvider } from 'react-helmet-async';
-import ParallaxBioCard from '../components/About/ParallaxBioCard';
-import bios from '../data/bios';
+// src/pages/About.jsx
 
+import React from 'react';
+import { Helmet, HelmetProvider } from 'react-helmet-async';
 
 const About = () => {
-  const [viewed, setViewed] = useState([]);
-  const [showBackToTop, setShowBackToTop] = useState(false);
-
-  const handleView = (index) => {
-    if (!viewed.includes(index)) {
-      setViewed((prev) => [...prev, index]);
-    }
-  };
-
-  const scrollToBio = (index) => {
-    const element = document.getElementById(`bio-${index}`);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-  };
-
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
-  useEffect(() => {
-    const onScroll = () => {
-      setShowBackToTop(window.pageYOffset > 300);
-    };
-    window.addEventListener('scroll', onScroll);
-    return () => window.removeEventListener('scroll', onScroll);
-  }, []);
-
- 
   return (
     <HelmetProvider>
       <Helmet>
-        <title>About Us - Meet Our Marine Experts</title>
+        <title>About Us | AusPac</title>
         <meta
           name="description"
-          content="Learn more about our marine experts and their bios on our About page."
-        />
-        <meta property="og:title" content="About Us - Meet Our Marine Experts" />
-        <meta
-          property="og:description"
-          content="Learn more about our marine experts and their bios on our About page."
+          content="AusPac is an independent marine surveying and maritime consultancy delivering high-level surveying, superintendence, audit, and casualty response services."
         />
       </Helmet>
+ 
+      <section className="max-w-4xl mx-auto px-6 py-24">
+        <h1 className="text-4xl font-bold text-center mb-8" style={{ color: '#0077B6' }}>
+          About AusPac
+        </h1>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 flex flex-col md:flex-row gap-12">
-        {/* Sticky TOC */}
-        <nav className="hidden md:block sticky top-20 self-start w-64 bg-white rounded-lg shadow-md p-6">
-          <h2 className="text-xl font-bold mb-6 text-blue-800">Our Team</h2>
-          <ul className="space-y-4">
-            {bios.map((bio, i) => (
-              <li key={i}>
-                <button
-                  onClick={() => scrollToBio(i)}
-                  className="text-blue-600 hover:underline focus:outline-none"
-                >
-                  {bio.name}
-                </button>
-              </li>
-            ))}
-          </ul>
-        </nav>
+        <div className="space-y-6 text-gray-700 text-lg leading-relaxed">
+          <p>
+            AusPac is an independent marine surveying and maritime consultancy delivering high-level surveying, superintendence, audit, and casualty response services.
+          </p>
 
-        {/* Bios section */}
-        <main className="flex-1">
-          <h1 className="text-4xl font-extrabold mb-12 text-center md:text-left text-gray-800">
-            Meet Our Marine Experts
-          </h1>
-          {bios.map((bio, i) => (
-            <div key={i} id={`bio-${i}`}>
-              <ParallaxBioCard
-                index={i}
-                name={bio.name}
-                content={bio.content}
-                isViewed={viewed.includes(i)}
-                onView={handleView}
-                imgSrc={bio.imgSrc}
-              />
-            </div>
-          ))}
-        </main>
+          <p>
+            We provide evidence-based, defensible reporting supported by regulatory expertise and commercial awareness.
+          </p>
 
-        {/* Back to Top Button */}
-        {showBackToTop && (
-          <button
-            onClick={scrollToTop}
-            aria-label="Back to Top"
-            className="fixed bottom-6 right-6 bg-blue-600 hover:bg-blue-700 text-white px-4 py-3 rounded-full shadow-lg transition"
-          >
-            ↑ Top
-          </button>
-        )}
-      </div>
+          <p>
+            Our practice is built on discretion, procedural discipline, and technical accuracy. We understand that maritime operations operate at the intersection of compliance, commercial exposure, and reputational risk.
+          </p>
+
+          <p>
+            We act as trusted technical advisors protecting operational, financial, and legal interests.
+          </p>
+        </div>
+      </section>
     </HelmetProvider>
   );
 };

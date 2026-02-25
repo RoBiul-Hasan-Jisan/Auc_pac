@@ -1,106 +1,181 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
-import { HiOutlineMenuAlt3, HiX } from "react-icons/hi";
+import { HiOutlineMenuAlt3, HiX, HiChevronDown } from "react-icons/hi";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const [sectorOpen, setSectorOpen] = useState(false);
+  const [mobileSectorOpen, setMobileSectorOpen] = useState(false); // State for mobile accordion
+  const dropdownRef = useRef(null);
 
-  const navLinks = [
-    { name: "Home", path: "/" },
-    { name: "About Us", path: "/about" },
-    { name: "Surveys", path: "/surveys" },
-    { name: "Contact Us", path: "/contact" },
-  ];
+  // Close dropdown when clicking outside (Desktop)
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setSectorOpen(false);
+      }
+    }
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   return (
-    <nav
-      aria-label="Primary navigation"
-      className="bg-white shadow-sm sticky top-0 z-50"
-    >
-      <div className="container mx-auto px-4 py-3 flex justify-between items-center">
+    <nav className="bg-white shadow-sm sticky top-0 z-50">
+      <div className="container mx-auto px-6 py-3 flex justify-between items-center">
         {/* Logo */}
-        <Link to="/" className="flex items-center space-x-2">
+        <Link to="/" className="flex items-center gap-3">
           <img
             src="/image/AUSPAC LOGO1.png"
             alt="AusPac Logo"
-            className="h-32 w-32 object-contain"
-            loading="eager"
+            className="h-14 w-14 object-contain"
           />
-          <div className="text-4xl font-bold leading-none">
+          <h1 className="text-2xl font-semibold tracking-tight">
             <span className="text-[#0077B6]">Aus</span>
             <span className="text-[#00B4D8]">Pac</span>
-          </div>
+          </h1>
         </Link>
 
         {/* Desktop Menu */}
-        <div className="hidden md:flex items-center space-x-6">
-          {navLinks.map((link) => (
-            <Link
-              key={link.name}
-              to={link.path}
-              className="text-gray-700 hover:text-blue-600 transition-colors duration-200"
+        <div className="hidden md:flex items-center gap-8 text-sm font-medium">
+          <Link to="/" className="hover:text-[#0077B6] transition">
+            Home
+          </Link>
+          <Link to="/about" className="hover:text-[#0077B6] transition">
+            About Us
+          </Link>
+
+          {/* Sector Expertise Dropdown (Desktop) */}
+          <div className="relative" ref={dropdownRef}>
+            <button
+              onClick={() => setSectorOpen(!sectorOpen)}
+              className="flex items-center gap-1 hover:text-[#0077B6] transition font-medium"
             >
-              {link.name}
-            </Link>
-          ))}
-        </div>
+              Sector Expertise
+              <HiChevronDown
+                className={`transition-transform duration-300 ${
+                  sectorOpen ? "rotate-180" : ""
+                }`}
+              />
+            </button>
 
-        {/* Desktop Call Button */}
-        <div className="hidden md:block">
-          <a
-            href="tel:+1234567890"
-            className="bg-blue-600 text-white px-5 py-2 rounded-md font-medium hover:bg-blue-700 transition duration-200 inline-block"
-            role="button"
-          >
-            Call Me Now
-          </a>
-        </div>
-
-        {/* Mobile Menu Button */}
-        <div className="md:hidden">
-          <button
-            type="button"
-            onClick={() => setIsOpen(!isOpen)}
-            aria-label="Toggle Menu"
-            aria-expanded={isOpen}
-            aria-controls="mobile-menu"
-          >
-            {isOpen ? (
-              <HiX className="h-8 w-8 text-blue-700" />
-            ) : (
-              <HiOutlineMenuAlt3 className="h-8 w-8 text-blue-700" />
+            {sectorOpen && (
+              <div className="absolute top-full left-0 mt-3 w-72 bg-white shadow-lg border rounded-md py-3 animate-fadeIn">
+                <Link
+                  to="/sector/pi-clubs"
+                  className="block px-5 py-2 hover:bg-gray-50 transition"
+                  onClick={() => setSectorOpen(false)}
+                >
+                  P&I Clubs & Insurance Interests
+                </Link>
+                <Link
+                  to="/sector/mining"
+                  className="block px-5 py-2 hover:bg-gray-50 transition"
+                  onClick={() => setSectorOpen(false)}
+                >
+                  Mining & Resource Majors
+                </Link>
+                <Link
+                  to="/sector/oil-gas"
+                  className="block px-5 py-2 hover:bg-gray-50 transition"
+                  onClick={() => setSectorOpen(false)}
+                >
+                  Oil & Gas Terminals & Tanker Operators
+                </Link>
+              </div>
             )}
-          </button>
+          </div>
+
+          <Link to="/services" className="hover:text-[#0077B6] transition">
+            Services
+          </Link>
+          <Link to="/why-auspac" className="hover:text-[#0077B6] transition">
+            Why AusPac
+          </Link>
+          
         </div>
+
+        {/* Desktop CTA Button */}
+        <div className="hidden md:block">
+          <Link
+            to="/contact"
+            className="bg-[#0077B6] text-white px-5 py-2 rounded-md text-sm font-semibold hover:bg-[#005f8f] transition"
+          >
+            Contact
+          </Link>
+        </div>
+
+        {/* Mobile Hamburger Toggle */}
+        <button
+          className="md:hidden p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-[#0077B6]/50"
+          onClick={() => setIsOpen(!isOpen)}
+          aria-label="Toggle Menu"
+        >
+          {isOpen ? (
+            <HiX className="h-7 w-7 text-[#0077B6]" />
+          ) : (
+            <HiOutlineMenuAlt3 className="h-7 w-7 text-[#0077B6]" />
+          )}
+        </button>
       </div>
 
       {/* Mobile Menu */}
       {isOpen && (
-        <div
-          id="mobile-menu"
-          className="md:hidden bg-white px-6 pb-4 shadow-inner"
-          role="menu"
-        >
-          <div className="flex flex-col space-y-4">
-            {navLinks.map((link) => (
-              <Link
-                key={link.name}
-                to={link.path}
-                onClick={() => setIsOpen(false)}
-                className="text-gray-800 hover:text-blue-600 transition"
-                role="menuitem"
-              >
-                {link.name}
-              </Link>
-            ))}
-            <a
-              href="tel:+1234567890"
-              className="bg-blue-600 text-white w-full py-2 rounded-md hover:bg-blue-700 transition inline-block text-center"
-              role="button"
+        <div className="md:hidden flex flex-col px-6 pt-2 pb-6 space-y-1 border-t bg-white absolute w-full shadow-lg">
+          <Link to="/" className="block py-3 text-gray-800 font-medium hover:text-[#0077B6]" onClick={() => setIsOpen(false)}>
+            Home
+          </Link>
+          <Link to="/about" className="block py-3 text-gray-800 font-medium hover:text-[#0077B6]" onClick={() => setIsOpen(false)}>
+            About Us
+          </Link>
+
+          {/* Mobile Sector Expertise Accordion */}
+          <div>
+            <button
+              onClick={() => setMobileSectorOpen(!mobileSectorOpen)}
+              className="flex w-full items-center justify-between py-3 text-gray-800 font-medium hover:text-[#0077B6]"
             >
-              Call Me Now
-            </a>
+              Sector Expertise
+              <HiChevronDown
+                className={`transition-transform duration-300 ${
+                  mobileSectorOpen ? "rotate-180" : ""
+                }`}
+              />
+            </button>
+
+            {/* Mobile Dropdown Items */}
+            {mobileSectorOpen && (
+              <div className="flex flex-col pl-4 mt-1 mb-2 border-l-2 border-gray-100 space-y-1">
+                <Link to="/sector/pi-clubs" className="block py-2 text-sm text-gray-600 hover:text-[#0077B6]" onClick={() => setIsOpen(false)}>
+                  P&I Clubs & Insurance Interests
+                </Link>
+                <Link to="/sector/mining" className="block py-2 text-sm text-gray-600 hover:text-[#0077B6]" onClick={() => setIsOpen(false)}>
+                  Mining & Resource Majors
+                </Link>
+                <Link to="/sector/oil-gas" className="block py-2 text-sm text-gray-600 hover:text-[#0077B6]" onClick={() => setIsOpen(false)}>
+                  Oil & Gas Terminals & Tanker Operators
+                </Link>
+              </div>
+            )}
           </div>
+
+          <Link to="/services" className="block py-3 text-gray-800 font-medium hover:text-[#0077B6]" onClick={() => setIsOpen(false)}>
+            Services
+          </Link>
+          <Link to="/why-auspac" className="block py-3 text-gray-800 font-medium hover:text-[#0077B6]" onClick={() => setIsOpen(false)}>
+            Why AusPac
+          </Link>
+         
+
+          <Link
+            to="/contact"
+            onClick={() => setIsOpen(false)}
+            className="block text-center bg-[#0077B6] text-white py-3 rounded-md mt-4 font-semibold hover:bg-[#005f8f] transition"
+          >
+            Contact
+          </Link>
         </div>
       )}
     </nav>

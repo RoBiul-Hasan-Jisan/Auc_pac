@@ -2,7 +2,7 @@ import React from 'react';
 import { Helmet, HelmetProvider } from 'react-helmet-async';
 import HeroSection from '../HomeExtra/HeroSection';
 import PartnershipSection from '../HomeExtra/PartnershipSection';
-import CargoDisputeSection from '../HomeExtra/CargoDisputeSection';
+//import CargoDisputeSection from '../HomeExtra/CargoDisputeSection';
 import ServicesSection from '../HomeExtra/ServicesSection';
 
 export default function Home() {
@@ -24,7 +24,7 @@ export default function Home() {
 
       <HeroSection />
       <PartnershipSection />
-      <CargoDisputeSection />
+      
       <ServicesSection />
     </HelmetProvider>
   );

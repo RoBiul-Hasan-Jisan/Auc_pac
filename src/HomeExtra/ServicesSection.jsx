@@ -1,64 +1,57 @@
-// ServicesSection.jsx or .js
+// src/HomeExtra/ServicesSection.jsx
+
 import React from "react";
-import { useNavigate } from "react-router-dom";
 import { Helmet, HelmetProvider } from "react-helmet-async";
 import services from "../data/services"; 
 
-
-
-
 export default function ServicesSection() {
-  const navigate = useNavigate();
-
   return (
     <HelmetProvider>
       <Helmet>
-        <title>Survey Services Offered by AusPac</title>
+        <title>Survey Services | AusPac</title>
         <meta
           name="description"
-          content="Explore AusPac’s comprehensive marine survey services including Draft Survey, Cargo Damage Surveys, Port State Control Inspection, and more."
-        />
-        <meta property="og:title" content="Survey Services Offered by AusPac" />
-        <meta
-          property="og:description"
-          content="Explore AusPac’s comprehensive marine survey services including Draft Survey, Cargo Damage Surveys, Port State Control Inspection, and more."
+          content="Professional marine survey, inspection, audit and cargo supervision services."
         />
       </Helmet>
 
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16" aria-labelledby="services-heading">
-        <h2 id="services-heading" className="text-3xl sm:text-4xl font-bold mb-12 text-center text-gray-900">
-          Surveys We Offer
-        </h2>
+      <section className="bg-gray-50 py-20">
+        <div className="max-w-7xl mx-auto px-6">
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8">
-          {services.map((service) => (
-            <div
-              key={service.name}
-              className="bg-white rounded-lg shadow-md overflow-hidden flex flex-col hover:shadow-xl transition-shadow duration-300"
-            >
-              <img
-                src={service.image}
-                alt={service.name}
-                className="h-44 sm:h-48 w-full object-cover"
-                loading="lazy"
-              />
-              <div className="p-4 flex-grow flex items-center justify-center">
-                <h3 className="text-lg font-semibold text-center text-gray-800">
-                  {service.name}
+          {/* Header */}
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-gray-900">
+              Our Services
+            </h2>
+            <p className="mt-4 text-gray-600 max-w-2xl mx-auto">
+              Independent marine surveying, inspection and advisory services
+              supporting shipowners, charterers and insurers worldwide.
+            </p>
+          </div>
+
+          {/* Service Cards */}
+          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+            {services.map((service, index) => (
+              <div
+                key={index}
+                className="bg-white rounded-lg shadow-sm hover:shadow-lg transition duration-300 p-6 border border-gray-100"
+              >
+                <h3 className="text-lg font-semibold text-blue-700 mb-4">
+                  {service.title}
                 </h3>
-              </div>
-            </div>
-          ))}
-        </div>
 
-        <div className="mt-12 text-center">
-          <button
-            onClick={() => navigate("/surveys")}
-            className="px-8 py-3 bg-blue-600 text-white font-semibold rounded-md hover:bg-blue-700 transition"
-            aria-label="View All Services"
-          >
-            View All Services
-          </button>
+                <ul className="space-y-2 text-gray-700 text-sm leading-relaxed">
+                  {service.items.map((item, i) => (
+                    <li key={i} className="flex">
+                      <span className="mr-2 text-blue-600">•</span>
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+
         </div>
       </section>
     </HelmetProvider>

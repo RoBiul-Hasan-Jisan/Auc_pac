@@ -1,8 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
-
-const linkClasses =
-  "text-gray-300 hover:text-white transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 rounded underline";
+import { FiPhone, FiMail, FiMapPin, FiSmartphone } from "react-icons/fi";
+import { SiWechat } from "react-icons/si";
 
 export default function Footer() {
   const scrollToTop = (e) => {
@@ -10,33 +9,35 @@ export default function Footer() {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
+  const linkClasses =
+    "text-gray-300 hover:text-white transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 rounded";
+
   return (
-    <footer className="bg-gray-900 text-gray-300 py-12 mt-12 select-none">
-      <div className="max-w-6xl mx-auto px-6 flex flex-col md:flex-row md:justify-between md:items-start gap-12">
+    <footer className="bg-gray-900 text-gray-300 py-16 select-none">
+      <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-12">
         {/* Company Info */}
-        <div className="md:flex-1">
+        <div>
           <a
             href="#top"
             onClick={scrollToTop}
-            className="text-white text-2xl font-bold mb-4 tracking-wide inline-block cursor-pointer hover:text-indigo-400 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-indigo-400 rounded"
-            aria-label="Scroll to top"
+            className="text-white text-3xl font-bold mb-4 inline-block hover:text-indigo-400 transition-colors duration-300"
           >
             AusPac Marine
           </a>
-          <p className="text-gray-400 leading-relaxed max-w-md">
-            Providing first-rate surveying, inspection, and consultancy services
-            to the shipping industry.
+          <p className="text-gray-400 leading-relaxed">
+            Trusted marine surveying and consultancy services with discretion, precision, and responsiveness.
           </p>
         </div>
 
         {/* Quick Links */}
-        <nav aria-label="Footer Navigation" className="md:flex-1" role="navigation">
-          <h3 className="text-white text-xl font-semibold mb-5">Quick Links</h3>
-          <ul className="space-y-3">
+        <nav aria-label="Footer Navigation" className="space-y-4">
+          <h3 className="text-white text-xl font-semibold mb-4">Quick Links</h3>
+          <ul className="space-y-2">
             {[
               { to: "/", label: "Home" },
               { to: "/about", label: "About Us" },
               { to: "/surveys", label: "Surveys" },
+              { to: "/contact", label: "Contact Us" },
             ].map(({ to, label }) => (
               <li key={label}>
                 <Link to={to} className={linkClasses} onClick={scrollToTop}>
@@ -47,37 +48,44 @@ export default function Footer() {
           </ul>
         </nav>
 
-        {/* Contact */}
-        <address className="md:flex-1 not-italic space-y-3">
-          <h3 className="text-white text-xl font-semibold mb-5">Contact Us</h3>
-          <p className="text-gray-400 max-w-sm">PO Box 317, Cannon Hill, QLD 4170</p>
-          <p>
-            Phone:{" "}
-            <a href="tel:+61733486334" className={linkClasses}>
-              (+617) 3348 6334
-            </a>
-          </p>
-          <p className="text-gray-400">Fax: (+617) 3396 8709</p>
-          <p>
-            Mobile:{" "}
-            <a href="tel:+61418176815" className={linkClasses}>
-              (+61) 418 176 815
-            </a>
-          </p>
-          <p>
-            Email:{" "}
-            <a
-              href="mailto:surveys@cargocare.com.au"
-              className="text-indigo-400 hover:text-indigo-300 transition-colors duration-300 underline focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 rounded"
-            >
-              surveys@cargocare.com.au
-            </a>
-          </p>
-        </address>
+        {/* Contact Info */}
+        <div className="space-y-4">
+          <h3 className="text-white text-xl font-semibold mb-4">Contact Us</h3>
+          <ul className="space-y-3">
+            <li className="flex items-center gap-3">
+              <FiMapPin className="text-indigo-500 w-5 h-5" />
+              <span>PO Box 3058, Melbourne, Australia</span>
+            </li>
+            <li className="flex items-center gap-3">
+              <FiSmartphone className="text-indigo-500 w-5 h-5" />
+              <a href="tel:+61480556364" className={linkClasses}>
+                +61 480 556 364
+              </a>{" "}
+              <span className="text-gray-400">(International)</span>
+            </li>
+            <li className="flex items-center gap-3">
+              <FiPhone className="text-indigo-500 w-5 h-5" />
+              <a href="tel:0480556364" className={linkClasses}>
+                0480 556 364
+              </a>{" "}
+              <span className="text-gray-400">(Within Australia)</span>
+            </li>
+            <li className="flex items-center gap-3">
+              <SiWechat className="text-green-500 w-5 h-5" />
+              <span>CaptHasan1977</span>
+            </li>
+            <li className="flex items-center gap-3">
+              <FiMail className="text-indigo-500 w-5 h-5" />
+              <a href="mailto:survey@auspac.au" className={linkClasses}>
+                survey@auspac.au
+              </a>
+            </li>
+          </ul>
+        </div>
       </div>
 
-      {/* Bottom bar */}
-      <div className="max-w-6xl mx-auto px-6 mt-14 pt-6 border-t border-gray-800 text-center text-gray-500 text-sm select-text">
+      {/* Bottom Bar */}
+      <div className="max-w-6xl mx-auto px-6 mt-12 pt-6 border-t border-gray-800 text-center text-gray-500 text-sm select-text">
         &copy; {new Date().getFullYear()} AusPac Marine. All rights reserved.
       </div>
     </footer>
