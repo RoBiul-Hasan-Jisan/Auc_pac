@@ -9,7 +9,7 @@ const HeroSection = () => {
 
   useEffect(() => {
     // Swap to real hero image after mount
-    setBgImage("/image/herosection3.jpg"); // Replace with your optimized hero image path
+    setBgImage("/image/herosection3.jpg"); 
   }, []);
 
   const style = useMemo(
@@ -68,10 +68,10 @@ const HeroSection = () => {
 
           <div className="mt-6 flex flex-col sm:flex-row gap-4 justify-center animate-fadeIn delay-600">
             <a
-              href="/request-attendance"
+              href="/services"
               className="bg-indigo-600 hover:bg-indigo-700 transition-colors duration-300 text-white font-semibold py-3 px-6 rounded-full shadow-lg"
             >
-              Request Attendance
+              Expore our services
             </a>
             <a
               href="/contact"
