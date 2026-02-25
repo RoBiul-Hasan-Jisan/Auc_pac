@@ -4,11 +4,6 @@ import { FiPhone, FiMail, FiMapPin, FiSmartphone } from "react-icons/fi";
 import { SiWechat } from "react-icons/si";
 
 export default function Footer() {
-  const scrollToTop = (e) => {
-    e.preventDefault();
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
-
   const linkClasses =
     "text-gray-300 hover:text-white transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 rounded";
 
@@ -19,7 +14,10 @@ export default function Footer() {
         <div>
           <a
             href="#top"
-            onClick={scrollToTop}
+            onClick={(e) => {
+              e.preventDefault();
+              window.scrollTo({ top: 0, behavior: "smooth" });
+            }}
             className="text-white text-3xl font-bold mb-4 inline-block hover:text-indigo-400 transition-colors duration-300"
           >
             AusPac Marine
@@ -38,9 +36,10 @@ export default function Footer() {
               { to: "/about", label: "About Us" },
               { to: "/services", label: "Services" },
               { to: "/contact", label: "Contact Us" },
+              { to: "/why-auspac", label: "Why AusPac" },
             ].map(({ to, label }) => (
               <li key={label}>
-                <Link to={to} className={linkClasses} onClick={scrollToTop}>
+                <Link to={to} className={linkClasses}>
                   {label}
                 </Link>
               </li>
