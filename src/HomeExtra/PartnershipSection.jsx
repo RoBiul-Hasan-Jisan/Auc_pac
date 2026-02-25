@@ -23,7 +23,8 @@ export default function CommitmentSection() {
       >
         <h2
           id="commitment-heading"
-          className="text-4xl font-bold text-indigo-600 mb-8"
+          className="text-4xl font-bold text-[#0077B6] mb-8"
+          
         >
           Our Commitment
         </h2>
