@@ -71,7 +71,7 @@ const HeroSection = () => {
               href="/services"
               className="bg-indigo-600 hover:bg-indigo-700 transition-colors duration-300 text-white font-semibold py-3 px-6 rounded-full shadow-lg"
             >
-              Expore our services
+              Explore our services
             </a>
             <a
               href="/contact"
